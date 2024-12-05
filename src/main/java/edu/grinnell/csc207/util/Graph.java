@@ -522,6 +522,19 @@ public class Graph {
     };
   } // vertices()
 
+  public void reachableFrom(PrintWriter pen, int vertex) {
+    for(Edge vert: vertices[vertex]) {   
+      mark(vert.target());
+      pen.print("<" + vert.source() + "," + vert.target() + "," + vert.weight() + ">");
+    }
+  }
+
+  public void reachableFrom(PrintWriter pen, String vertex) {
+    reachableFrom(pen, vertexNumber(vertex));
+  }
+
+
+
   // +----------+----------------------------------------------------
   // | Mutators |
   // +----------+
