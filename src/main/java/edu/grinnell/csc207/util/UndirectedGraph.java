@@ -1,5 +1,9 @@
 package edu.grinnell.csc207.util;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 /**
  * A simple implementation of undirected graphs.
  *
@@ -20,8 +24,7 @@ public class UndirectedGraph extends Graph {
   /**
    * Create a basic undirected graph from a file.
    *
-   * @param fname
-   *   The file to read from.
+   * @param fname The file to read from.
    */
   public UndirectedGraph(String fname) throws Exception {
     super(fname);
@@ -34,15 +37,11 @@ public class UndirectedGraph extends Graph {
   /**
    * Add an edge between two vertices.
    *
-   * @param u
-   *   One end of the edge.
-   * @param v
-   *   The other end of the edge.
-   * @param weight
-   *   The weight of the edge.
+   * @param u One end of the edge.
+   * @param v The other end of the edge.
+   * @param weight The weight of the edge.
    *
-   * @throws Exception
-   *   If either or both vertices are invalid.
+   * @throws Exception If either or both vertices are invalid.
    */
   @Override
   public void addEdge(String u, String v, int weight) throws Exception {
@@ -50,18 +49,13 @@ public class UndirectedGraph extends Graph {
   } // addEdge(String, String, int)
 
   /**
-   * Add an edge between two vertices.
-   * Add an edge between two vertices.
+   * Add an edge between two vertices. Add an edge between two vertices.
    *
-   * @param u
-   *   One end of the edge.
-   * @param v
-   *   The other end of the edge.
-   * @param weight
-   *   The weight of the edge.
+   * @param u One end of the edge.
+   * @param v The other end of the edge.
+   * @param weight The weight of the edge.
    *
-   * @throws Exception
-   *   If either or both vertices are invalid.
+   * @throws Exception If either or both vertices are invalid.
    */
   public void addEdge(int u, int v, int weight) throws Exception {
     super.addEdge(u, v, weight);
@@ -71,10 +65,8 @@ public class UndirectedGraph extends Graph {
   /**
    * Remove an edge. If the edge does not exist, does nothing.
    *
-   * @param u
-   *   One end of the edge.
-   * @param v
-   *   The other end of the edge.
+   * @param u One end of the edge.
+   * @param v The other end of the edge.
    */
   @Override
   public void removeEdge(String u, String v) {
@@ -85,10 +77,8 @@ public class UndirectedGraph extends Graph {
   /**
    * Remove an edge. If the edge does not exist, does nothing.
    *
-   * @param u
-   *   One end of the edge.
-   * @param v
-   *   The other end of the edge.
+   * @param u One end of the edge.
+   * @param v The other end of the edge.
    */
   @Override
   public void removeEdge(int u, int v) {
@@ -103,8 +93,7 @@ public class UndirectedGraph extends Graph {
   /**
    * Get the number of a vertex. If the vertex does not already exist, adds it.
    *
-   * @param vertex
-   *   The name of the vertex.
+   * @param vertex The name of the vertex.
    *
    * @return the corresponding integer.
    */
@@ -115,5 +104,6 @@ public class UndirectedGraph extends Graph {
     } // if
     return num;
   } // safeVertexNumber(String)
+
 
 } // class UndirectedGraph

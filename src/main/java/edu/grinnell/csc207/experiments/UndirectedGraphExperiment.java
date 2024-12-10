@@ -24,6 +24,11 @@ public class UndirectedGraphExperiment {
     g.addEdge("a", "b", 1);
     g.addEdge("a", "c", 2);
     g.addEdge("b", "c", 3);
+
+
+    pen.println("CHECKING SHORTEST PATH PLEASE WORK");
+   
+
     g.dumpWithNames(pen);
 
     // Change an edge, in the backwards direction

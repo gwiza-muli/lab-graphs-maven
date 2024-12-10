@@ -51,6 +51,14 @@ public class GraphExperiment {
     g.addEdge("d", "a", 6);
     g.dump(pen);
 
+    pen.println("hello world");
+
+    g.shortestPath("a","c");
+
+    g.shortestPath("b","a");
+    g.dump(pen);
+    pen.println("just checking");
+
     // And another (hopefully, this will replace the old b)
     g.addVertex("e");
     g.addEdge("e", "a", 7);

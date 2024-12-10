@@ -989,4 +989,31 @@ public class Graph {
     return num;
   } // safeVertexNumber(String)
 
+  Edge[] shortestPath(int source, int sink) {
+    Edge[] result = new Edge[numEdges];
+
+    // Vertices left to process. (We use BFS.)
+    Queue<Integer> remaining = new LinkedList<Integer>();
+    remaining.add(source);
+
+    // Keep going until we reach finish or run out of edges
+    while ((result[sink] == null) && (!remaining.isEmpty())) {
+      Integer v = remaining.remove();
+      for (Edge e : this.edgesFrom(v)) {
+        int to = e.target();
+        if (result[to - 1] == null) {
+          remaining.add(to);
+          result[to] = e;
+        } // if
+      } // while
+    }
+    
+        return result;
+
+  }
+
+  public Edge[] shortestPath(String source, String sink){
+    return shortestPath(this.vertexNumber(source),this.vertexNumber(sink));
+  }
+
 } // class Graph
