@@ -6,6 +6,7 @@ Authors:
 
 * Sheilla Mulligande
 * Sal Karki
+* Mitch Paiva
 * Samuel A. Rebelsky (basic graph implementation)
 
 This code may be found at <https://github.com/USERNAME/lab-graphs-maven>.
