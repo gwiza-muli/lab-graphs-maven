@@ -996,16 +996,27 @@ public class Graph {
     Queue<Integer> remaining = new LinkedList<Integer>();
     remaining.add(source);
 
+    Edge[] prev = new Edge[numVertices];
+
     // Keep going until we reach finish or run out of edges
-    while ((result[sink] == null) && (!remaining.isEmpty())) {
+    while (!remaining.isEmpty()) {
       Integer v = remaining.remove();
+      if (v == sink){
+        break;
+      }
       for (Edge e : this.edgesFrom(v)) {
         int to = e.target();
-        if (result[to - 1] == null) {
+        if (prev[to - 1] == null) {
           remaining.add(to);
-          result[to] = e;
+          result[to - 1] = e;
         } // if
       } // while
+    }
+
+    int curr = sink;
+    while (curr != source && prev[curr] != null){
+      result[curr] = prev[curr];
+      curr = prev[curr].source();
     }
     
         return result;
