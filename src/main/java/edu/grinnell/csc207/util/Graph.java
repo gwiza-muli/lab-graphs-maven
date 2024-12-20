@@ -990,36 +990,72 @@ public class Graph {
   } // safeVertexNumber(String)
 
   Edge[] shortestPath(int source, int sink) {
-    Edge[] result = new Edge[numEdges];
 
-    // Vertices left to process. (We use BFS.)
-    Queue<Integer> remaining = new LinkedList<Integer>();
-    remaining.add(source);
 
-    Edge[] prev = new Edge[numVertices];
+    int[] distances = new int[numVertices]; // array of shortest distances.
+    Edge[] previousEdges = new Edge[numVertices]; // array of previous edge for each vertex.
+    boolean[] markedVertices= new boolean[numVertices]; // array of visited vertices.
+    
+    // initialize the distance array to "infinity".
+    Arrays.fill(distances, Integer.MAX_VALUE);
+    distances[source] = 0; // initialize source distance to 0.
+
+    // Vertices left to process.
+    List<Integer> remaining = new ArrayList<>();
+    //add all vertices except for source to remaining list.
+    for(int i = 0; i < numVertices; i++){
+      if (i != source){
+        remaining.add(i);
+      } //if
+    } //for
 
     // Keep going until we reach finish or run out of edges
     while (!remaining.isEmpty()) {
-      Integer v = remaining.remove();
+      int v = -1;
+      int smallestDistance = Integer.MAX_VALUE;
+
+      for (int vertex : remaining){
+        if(distances[vertex] < smallestDistance){
+          v = vertex;
+          smallestDistance = distances[vertex];
+        }
+      }
+
       if (v == sink){
         break;
       }
+
+      remaining.remove(Integer.valueOf(v)); //remove v from the remaining/unmarked list
+      markedVertices[v] = true; //mark it as visited
+
       for (Edge e : this.edgesFrom(v)) {
-        int to = e.target();
-        if (prev[to - 1] == null) {
-          remaining.add(to);
-          result[to - 1] = e;
-        } // if
-      } // while
+        int to = e.target(); // target of the edge.
+        if (markedVertices[to]){ // skip the neighbor if it is marked.
+          continue;
+        }
+        int updatedDistance = distances[v] + e.weight(); // new distance to to
+        if (updatedDistance < distances[to]){
+          distances[to] = updatedDistance; // distance to to.
+          previousEdges[to] = e; // the edge that leads to to.
+        } //if
+        
+      } // for
     }
 
+
+    LinkedList<Edge> resultPaths = new LinkedList<>();
     int curr = sink;
-    while (curr != source && prev[curr] != null){
-      result[curr] = prev[curr];
-      curr = prev[curr].source();
+
+    while (curr != source && previousEdges[curr] != null){
+      resultPaths.addFirst(previousEdges[curr]);
+      curr = previousEdges[curr].source();
     }
     
-        return result;
+      if(curr == source){  // if we've reached the source, return the path.
+        return resultPaths.toArray(new Edge[resultPaths.size()]);
+      } else{
+        return null; // if the path does not exist
+      }
 
   }
 
