@@ -989,6 +989,13 @@ public class Graph {
     return num;
   } // safeVertexNumber(String)
 
+
+  /**
+   * finds the shortest path between two vertices.
+   * @param source the start vertex
+   * @param sink the end/destination vertex
+   * @return an array of Edge elements, which are the shortest path from source to vertex.
+   */
   Edge[] shortestPath(int source, int sink) {
 
     if ((source < 0 || source >= numVertices) || (sink < 0 || sink >= numVertices)){
