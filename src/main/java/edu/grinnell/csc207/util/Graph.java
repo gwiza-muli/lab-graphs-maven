@@ -991,7 +991,9 @@ public class Graph {
 
   Edge[] shortestPath(int source, int sink) {
 
-
+    if ((source < 0 || source >= numVertices) || (sink < 0 || sink >= numVertices)){
+      throw new IllegalArgumentException("invalid sink or source");
+    }
     int[] distances = new int[numVertices]; // array of shortest distances.
     Edge[] previousEdges = new Edge[numVertices]; // array of previous edge for each vertex.
     boolean[] markedVertices= new boolean[numVertices]; // array of visited vertices.
@@ -1021,7 +1023,7 @@ public class Graph {
         }
       }
 
-      if (v == sink){
+      if (v == -1 || v == sink){
         break;
       }
 

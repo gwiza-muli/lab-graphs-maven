@@ -3,6 +3,7 @@ package edu.grinnell.csc207.experiments;
 import java.io.PrintWriter;
 
 import edu.grinnell.csc207.util.Graph;
+import edu.grinnell.csc207.util.Edge;
 
 /**
  * A quick experiment with graphs.
@@ -53,8 +54,8 @@ public class GraphExperiment {
 
     pen.println("hello world");
 
+    
     g.shortestPath("a","c");
-
     g.shortestPath("b","a");
     g.dump(pen);
     pen.println("just checking");
@@ -95,3 +96,4 @@ public class GraphExperiment {
   } // main(String[])
 
 } // class GraphExperiment
+
